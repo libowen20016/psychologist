@@ -62,8 +62,7 @@ img{
   left: .94rem;
 }
 #content{
-  background: url("img/index.jpg") no-repeat;
-  background-size: 100%;
+  
   position:absolute;
   top:0;
   left:0;
@@ -93,34 +92,21 @@ img{
   }
 })(jQuery);
 
-
-var images=["img/manage.png","img/staff.png","img/emotion.png","img/marriage.png","img/parent.png"]
-
-
 $(function(){
-   var imgcod=$.getUrlParam('imgcod')
-   console.log(images[imgcod])
-   if(images[imgcod]){
-   loadImg("img/top.png",addImg,"margin-bottom:1rem","image1");
-   loadImg(images[imgcod],addImg,"","image2");
-   loadImg("img/content.png",addImg,"margin-top:.3rem","image3");
-   loadImg("img/buy.png",addImg,"","image4");}
-  function loadImg(url,callback,style,id){
+   loadImg("img/index.jpg",addImg)
+  function loadImg(url,callback){
     var img = new Image();
     img.onload = function(){
       img.onload = null;
-      callback(img,id);
+      callback(img);
     }
-    $(img).attr("style",style)
     img.src=url;
-    $(img).css("width","100%")
   }
-  function addImg(img,id){
-    $(img).appendTo($("#"+id))
+  function addImg(img){
+    $("#content").attr("style","background: url(\"img/index.jpg\") no-repeat;background-size: 100%;")
+    
   }
 })
-
-
 
 
 
