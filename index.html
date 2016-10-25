@@ -73,11 +73,7 @@ img{
 </head>
 <body>
 <div id="content">
-  <a href="content.html?imgcod=0" id="image1"></a>
-  <a href="content.html?imgcod=1" id="image2"></a>
-  <a href="content.html?imgcod=2" id="image3"></a>
-  <a href="content.html?imgcod=3" id="image4"></a>
-  <a href="content.html?imgcod=4" id="image5"></a>
+
 </div>
 
 <!-- <img src="img/top.png" alt="" width="100%" style="margin-bottom:1rem">
@@ -104,7 +100,12 @@ $(function(){
   }
   function addImg(img){
     $("#content").attr("style","background: url(\"img/index.jpg\") no-repeat;background-size: 100%;")
-    
+    var str ='  <a href="content.html?imgcod=0" id="image1"></a>'
+            +'  <a href="content.html?imgcod=1" id="image2"></a>'
+            +'  <a href="content.html?imgcod=2" id="image3"></a>'
+            +'  <a href="content.html?imgcod=3" id="image4"></a>'
+            +'  <a href="content.html?imgcod=4" id="image5"></a>'
+    $("#content").html(str)
   }
 })
 
