@@ -1,0 +1,121 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>new</title>
+<script type="text/javascript" src="jquery.js"></script>
+<style>
+*{
+	margin:0;
+	padding: 0;
+}
+*:focus{
+  outline:none;
+}
+img{
+  display: block;
+}
+#image4{
+  display: block;
+  width:100%;
+  position: fixed;
+  bottom:0;
+  left:0;
+}
+</style>
+</head>
+<body>
+<div id="image1"></div>
+<div id="image2"></div>
+<div id="image3"></div>
+<a href="#" id="image4"></a>
+<!-- <img src="img/top.png" alt="" width="100%" style="margin-bottom:1rem">
+<img id="dif_img" src="" alt="" width="100%">
+<img src="img/content.png" alt="" width="100%" style="margin-top:.3rem"> -->
+<script>
+
+(function($){$.getUrlParam= function(name){
+  var reg= new RegExp("(^|&)"+name +"=([^&]*)(&|$)");
+  var r= window.location.search.substr(1).match(reg);
+  if (r!=null) return unescape(r[2]); return null;
+  }
+})(jQuery);
+
+
+var images=["img/manage.png","img/staff.png","img/emotion.png","img/marriage.png","img/parent.png"]
+
+
+$(function(){
+   var imgcod=$.getUrlParam('imgcod')
+   console.log(images[imgcod])
+   if(images[imgcod]){
+   loadImg("img/top.png",addImg,"margin-bottom:1rem","image1");
+   loadImg(images[imgcod],addImg,"","image2");
+   loadImg("img/content.png",addImg,"margin-top:.3rem","image3");
+   loadImg("img/buy.png",addImg,"","image4");}
+  function loadImg(url,callback,style,id){
+    var img = new Image();
+    img.onload = function(){
+      img.onload = null;
+      callback(img,id);
+    }
+    $(img).attr("style",style)
+    img.src=url;
+    $(img).css("width","100%")
+  }
+  function addImg(img,id){
+    $(img).appendTo($("#"+id))
+  }
+})
+
+
+
+
+
+
+
+var dpr, rem, scale;
+var docEl = document.documentElement;
+var fontEl = document.createElement('style');
+var metaEl = document.querySelector('meta[name = "viewport"]');
+dpr = window.devicePixelRatio || 1;
+rem = docEl.clientWidth * dpr / 10;
+scale = 1 / dpr;
+//设置viewport，进行缩放，达到高清效果
+metaEl.setAttribute('content', 'width=' + dpr * docEl.clientWidth);
+metaEl.setAttribute('content', 'width=' + docEl.clientWidth + ',initial-scale=' + scale + ',maximum-scale=' + scale + ',minimum-scale=' + scale + ', user-scalable=no');
+//设置data-dpr属性，留作的css hack之用
+docEl.setAttribute('data-dpr', dpr);
+//动态写入样式
+// docEl.firstElementChild.appendChild(fontEl);
+// fontEl.innerHTML = 'html{font-size:' + rem +'px!important;}';
+document.getElementsByTagName('html')[0].style.fontSize = rem + 'px';
+//给js调用的，某一dpr下rem和px之间的转化函数
+window.rem2px = function(v) {
+	v = parseFloat(v);
+	return v * rem;
+}
+window.px2rem = function(v) {
+	v = parseFloat(v);
+	return v / rem;
+}
+window.dpr = dpr;
+window.rem = rem;
+//document.getElementsByTagName('body')[0].style.zoom = scale;
+//console.log(document.getElementsByTagName('body'));
+(function (doc, win) {
+    var docEl = doc.documentElement,
+    resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+    recalc = function () {
+        var clientWidth = docEl.clientWidth;
+        if (!clientWidth) return;
+        docEl.style.fontSize = 20 * (clientWidth / 320) + 'px';
+    };
+    if (!doc.addEventListener) return;
+    win.addEventListener(resizeEvt, recalc, false);
+    doc.addEventListener('DOMContentLoaded', recalc, false);
+})(document, window);
+</script>
+</body>
+</html>
