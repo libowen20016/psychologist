@@ -31,7 +31,9 @@ img{
 <body>
 <div id="image1"></div>
 <div id="image2"></div>
-<div id="image3"></div>
+<div id="image3-1"></div>
+<div id="image3-2"></div>
+<div id="image3-3"></div>
 <a href="#" id="image4"></a>
 <!-- <img src="img/top.png" alt="" width="100%" style="margin-bottom:1rem">
 <img id="dif_img" src="" alt="" width="100%">
@@ -47,7 +49,7 @@ img{
 
 
 var images=["img/manage.png","img/staff.png","img/emotion.png","img/marriage.png","img/parent.png"]
-
+var images2=["img/manage.jpg","img/staff.jpg","img/staff.jpg","img/marriage.jpg","img/parent.jpg"]
 
 $(function(){
    var imgcod=$.getUrlParam('imgcod')
@@ -55,7 +57,9 @@ $(function(){
    if(images[imgcod]){
    loadImg("img/top.png",addImg,"margin-bottom:1rem","image1");
    loadImg(images[imgcod],addImg,"","image2");
-   loadImg("img/content.png",addImg,"margin-top:.3rem","image3");
+   loadImg("img/content1.jpg",addImg,"margin-top:.3rem","image3-1");
+   loadImg(images2[imgcod],addImg,"","image3-2");
+   loadImg("img/content2.jpg",addImg,"","image3-3");
    loadImg("img/buy.png",addImg,"","image4");}
   function loadImg(url,callback,style,id){
     var img = new Image();
