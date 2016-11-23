@@ -71,7 +71,7 @@ img{
 }
 </style>
 </head>
-<body>
+<body id="body">
 <div id="content">
 
 </div>
@@ -89,6 +89,7 @@ img{
 })(jQuery);
 
 $(function(){
+
    loadImg("img/index.jpg",addImg)
   function loadImg(url,callback){
     var img = new Image();
@@ -106,7 +107,9 @@ $(function(){
             +'  <a href="content.html?imgcod=3" id="image4"></a>'
             +'  <a href="content.html?imgcod=4" id="image5"></a>'
     $("#content").html(str)
+    browserRedirectCss()
   }
+
 })
 
 
@@ -149,11 +152,37 @@ window.rem = rem;
         var clientWidth = docEl.clientWidth;
         if (!clientWidth) return;
         docEl.style.fontSize = 20 * (clientWidth / 320) + 'px';
+        browserRedirectCss()
     };
     if (!doc.addEventListener) return;
     win.addEventListener(resizeEvt, recalc, false);
     doc.addEventListener('DOMContentLoaded', recalc, false);
 })(document, window);
+
+
+  function browserRedirectCss() {
+    var sUserAgent= navigator.userAgent.toLowerCase();
+    var bIsIpad= sUserAgent.match(/ipad/i) == "ipad";
+    var bIsIphoneOs= sUserAgent.match(/iphone os/i) == "iphone os";
+    var bIsMidp= sUserAgent.match(/midp/i) == "midp";
+    var bIsUc7= sUserAgent.match(/rv: 1.2.3.4/i) == "rv:1.2.3.4";
+    var bIsUc= sUserAgent.match(/ucweb/i) == "ucweb";
+    var bIsAndroid= sUserAgent.match(/android/i) == "android";
+    var bIsCE= sUserAgent.match(/windows ce/i) == "windows ce";
+    var bIsWM= sUserAgent.match(/windows mobile/i) == "windows mobile";
+
+    if (bIsIpad || bIsIphoneOs || bIsMidp || bIsUc7 || bIsUc || bIsAndroid || bIsCE || bIsWM) {
+      
+    }
+    else {
+      //$("#body").css({width:"414px",margin:"auto"});
+      //$("#image4").css({width:"414px",margin:"auto",right:"0"})
+      //51.875px
+      docEl.style.fontSize ="25.875px";
+      $("#content").css({margin:"auto",right:"0"})
+    }
+  }
+
 </script>
 </body>
 </html>
