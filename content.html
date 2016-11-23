@@ -1,4 +1,4 @@
-<!doctype html>
+  <!doctype html>
 <html>
 <head>
 <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
@@ -34,7 +34,7 @@ img{
 <div id="image3-1"></div>
 <div id="image3-2"></div>
 <div id="image3-3"></div>
-<a href="pay.html" id="image4"></a>
+<a   id="image4"></a>
 <!-- <img src="img/top.png" alt="" width="100%" style="margin-bottom:1rem">
 <img id="dif_img" src="" alt="" width="100%">
 <img src="img/content.png" alt="" width="100%" style="margin-top:.3rem"> -->
@@ -52,6 +52,7 @@ var images=["img/manage.png","img/staff.png","img/emotion.png","img/marriage.png
 var images2=["img/manage.jpg","img/staff.jpg","img/staff.jpg","img/marriage.jpg","img/parent.jpg"]
 
 $(function(){
+   $("#image4").click(browserRedirect);
    var imgcod=$.getUrlParam('imgcod')
    console.log(images[imgcod])
    if(images[imgcod]){
@@ -74,6 +75,7 @@ $(function(){
   function addImg(img,id){
     $(img).appendTo($("#"+id))
   }
+  
 })
 
 
@@ -123,6 +125,29 @@ window.rem = rem;
     win.addEventListener(resizeEvt, recalc, false);
     doc.addEventListener('DOMContentLoaded', recalc, false);
 })(document, window);
+
+
+
+</script>
+<script type="text/javascript">
+  function browserRedirect() {
+    var sUserAgent= navigator.userAgent.toLowerCase();
+    var bIsIpad= sUserAgent.match(/ipad/i) == "ipad";
+    var bIsIphoneOs= sUserAgent.match(/iphone os/i) == "iphone os";
+    var bIsMidp= sUserAgent.match(/midp/i) == "midp";
+    var bIsUc7= sUserAgent.match(/rv: 1.2.3.4/i) == "rv:1.2.3.4";
+    var bIsUc= sUserAgent.match(/ucweb/i) == "ucweb";
+    var bIsAndroid= sUserAgent.match(/android/i) == "android";
+    var bIsCE= sUserAgent.match(/windows ce/i) == "windows ce";
+    var bIsWM= sUserAgent.match(/windows mobile/i) == "windows mobile";
+
+    if (bIsIpad || bIsIphoneOs || bIsMidp || bIsUc7 || bIsUc || bIsAndroid || bIsCE || bIsWM) {
+      window.location.href='mobilePay.html';
+    }
+    else {
+      window.location='pcPay.html';
+    }
+  }
 </script>
 </body>
 </html>
